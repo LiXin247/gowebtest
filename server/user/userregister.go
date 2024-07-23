@@ -2,7 +2,7 @@ package user
 
 import (
 	"github.com/gin-gonic/gin"
-	"gowebtest/data"
+	"gowebtest/dbconnect"
 	model "gowebtest/model/user"
 	"net/http"
 )
@@ -18,7 +18,7 @@ func UserRegister(context *gin.Context) {
 		})
 		return
 	}
-	db := data.Database{}
+	db := dbconnect.Database{}
 	db.DatabaseConnect()
 	var lastuser model.UserInfo
 	db.DB.Last(&lastuser)

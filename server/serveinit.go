@@ -2,16 +2,16 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"gowebtest/data"
-	"gowebtest/index"
+	"gowebtest/dbconnect"
 	"gowebtest/route"
-	"gowebtest/user"
+	"gowebtest/server/index"
+	user2 "gowebtest/server/user"
 	"net/http"
 )
 
 func ServeInit() {
 	//测试数据库连接
-	db := data.Database{}
+	db := dbconnect.Database{}
 	db.DatabaseConnect()
 	//注册路由
 	router := gin.Default()
@@ -25,9 +25,9 @@ func ServeInit() {
 		{
 			GroupName: "User",
 			Routes: []route.Route{
-				{http.MethodGet, "/user/login", user.UserLoginInit},
-				{http.MethodPost, "/user/login", user.UserLogin},
-				{http.MethodPost, "/user/register", user.UserRegister},
+				{http.MethodGet, "/user/login", user2.UserLoginInit},
+				{http.MethodPost, "/user/login", user2.UserLogin},
+				{http.MethodPost, "/user/register", user2.UserRegister},
 			},
 		},
 	}

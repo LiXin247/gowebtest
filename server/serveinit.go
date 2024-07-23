@@ -19,16 +19,18 @@ func ServeInit() {
 		{
 			GroupName: "Index",
 			Routes: []route.Route{
-				{Method: http.MethodGet, Path: "/", HandlerFunc: index.Index},
+				{http.MethodGet, "/", index.Index},
 			},
 		},
 		{
 			GroupName: "User",
 			Routes: []route.Route{
-				{Method: http.MethodGet, Path: "/user/login", HandlerFunc: user.UserLogin},
-				{Method: http.MethodGet, Path: "/user/register", HandlerFunc: user.UserRegister},
+				{http.MethodGet, "/user/login", user.UserLoginInit},
+				{http.MethodPost, "/user/login", user.UserLogin},
+				{http.MethodPost, "/user/register", user.UserRegister},
 			},
 		},
 	}
 	route.InitRoutes(router, routes)
+	router.Run()
 }

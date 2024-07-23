@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"gowebtest/data"
+	"gowebtest/index"
 	"gowebtest/route"
 	"gowebtest/user"
 	"net/http"
@@ -16,9 +17,16 @@ func ServeInit() {
 	router := gin.Default()
 	routes := []route.Routegroup{
 		{
-			GroupName: "customer",
+			GroupName: "Index",
 			Routes: []route.Route{
-				{Method: http.MethodGet, Path: "/get", HandlerFunc: user.UserLogin},
+				{Method: http.MethodGet, Path: "/", HandlerFunc: index.Index},
+			},
+		},
+		{
+			GroupName: "User",
+			Routes: []route.Route{
+				{Method: http.MethodGet, Path: "/user/login", HandlerFunc: user.UserLogin},
+				{Method: http.MethodGet, Path: "/user/register", HandlerFunc: user.UserRegister},
 			},
 		},
 	}

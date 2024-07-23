@@ -4,8 +4,10 @@ import (
 	"github.com/gin-gonic/gin"
 	"gowebtest/dbconnect"
 	"gowebtest/route"
+	"gowebtest/server/admin"
+	"gowebtest/server/card"
 	"gowebtest/server/index"
-	user2 "gowebtest/server/user"
+	"gowebtest/server/user"
 	"net/http"
 )
 
@@ -25,9 +27,24 @@ func ServeInit() {
 		{
 			GroupName: "User",
 			Routes: []route.Route{
-				{http.MethodGet, "/user/login", user2.UserLoginInit},
-				{http.MethodPost, "/user/login", user2.UserLogin},
-				{http.MethodPost, "/user/register", user2.UserRegister},
+				{http.MethodGet, "login", user.UserLoginInit},
+				{http.MethodPost, "login", user.UserLogin},
+				{http.MethodPost, "register", user.UserRegister},
+				{http.MethodGet, "home/:name", user.UserHome},
+			},
+		},
+		{
+			GroupName: "admin",
+			Routes: []route.Route{
+				{http.MethodGet, "home/:name", admin.AdminHome},
+			},
+		},
+		{
+			GroupName: "card",
+			Routes: []route.Route{
+				{http.MethodGet, "cards", card.Cards},
+				{http.MethodGet, "gacha", card.GachaCard},
+				{http.MethodPost, "cardsadd", card.CardAdd},
 			},
 		},
 	}

@@ -1,4 +1,4 @@
-package model
+package datamodel
 
 type CardInfo struct {
 	CardId          int    `gorm:"column:card_id;type:int(11);primary_key" json:"card_id"`

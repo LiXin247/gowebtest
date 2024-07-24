@@ -2,8 +2,8 @@ package user
 
 import (
 	"github.com/gin-gonic/gin"
-	"gowebtest/dbconnect"
-	"gowebtest/model/user"
+	"gowebtest/data"
+	"gowebtest/model/datamodel"
 	"net/http"
 )
 
@@ -21,9 +21,9 @@ func UserRegister(context *gin.Context) {
 		})
 		return
 	}
-	db := dbconnect.Database{}
+	db := data.Database{}
 	db.DatabaseConnect()
-	var lastuser model.UserInfo
+	var lastuser datamodel.UserInfo
 	db.DB.Last(&lastuser)
 	UID := lastuser.UserId + 1
 	var alreadyexists User
@@ -35,7 +35,7 @@ func UserRegister(context *gin.Context) {
 		})
 		return
 	}
-	newUser := model.UserInfo{UID, name, password, 0, 0}
+	newUser := datamodel.UserInfo{UID, name, password, 0, 0}
 	result_2 := db.DB.Create(&newUser)
 	if result_2.Error != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{

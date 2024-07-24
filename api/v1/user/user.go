@@ -2,11 +2,11 @@ package user
 
 import (
 	"github.com/gin-gonic/gin"
-	"gowebtest/model/user"
+	"gowebtest/model/datamodel"
 )
 
 type User struct {
-	Data model.UserInfo
+	Data datamodel.UserInfo
 }
 
 func UserHome(context *gin.Context) {

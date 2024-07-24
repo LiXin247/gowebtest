@@ -3,7 +3,7 @@ package user
 import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
-	"gowebtest/dbconnect"
+	"gowebtest/data"
 	"net/http"
 )
 
@@ -13,7 +13,7 @@ func UserLoginInit(context *gin.Context) {
 func UserLogin(context *gin.Context) {
 	name := context.PostForm("name")
 	password := context.PostForm("password")
-	db := dbconnect.Database{}
+	db := data.Database{}
 	db.DatabaseConnect()
 	var u User
 	result := db.DB.Where("user_name = ? AND user_password = ?", name, password).First(&u.Data)

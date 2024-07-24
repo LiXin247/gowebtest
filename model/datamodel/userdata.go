@@ -1,4 +1,4 @@
-package model
+package datamodel
 
 type UserInfo struct {
 	UserId       int    `gorm:"column:user_id;type:int(11);primary_key" json:"user_id"`

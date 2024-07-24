@@ -3,8 +3,8 @@ package card
 import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
-	"gowebtest/dbconnect"
-	"gowebtest/model/card"
+	"gowebtest/data"
+	"gowebtest/model/datamodel"
 	"io"
 	"net/http"
 	"os"
@@ -24,7 +24,7 @@ func CardAdd(context *gin.Context) {
 		})
 		return
 	}
-	db := dbconnect.Database{}
+	db := data.Database{}
 	db.DatabaseConnect()
 	var alreadyexists Card
 	result1 := db.DB.Where("card_name = ?", name).First(&alreadyexists.Data)
@@ -35,14 +35,14 @@ func CardAdd(context *gin.Context) {
 		})
 		return
 	}
-	var lastcard model.CardInfo
+	var lastcard datamodel.CardInfo
 	db.DB.Last(&lastcard)
 	CardID := lastcard.CardId + 1
 	cardimageurlcopy, err_2 := CardCopy(CardID, cardimageurl, context)
 	if err_2 != nil {
 		return
 	}
-	newCard := model.CardInfo{CardID, name, cardlevel, cardimageurlcopy, description}
+	newCard := datamodel.CardInfo{CardID, name, cardlevel, cardimageurlcopy, description}
 	result2 := db.DB.Create(&newCard)
 	if result2.Error != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{

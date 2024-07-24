@@ -1,4 +1,4 @@
-package dbconnect
+package data
 
 import (
 	"fmt"
@@ -18,6 +18,5 @@ func (db *Database) DatabaseConnect() {
 	if db.err != nil {
 		panic("failed to connect database")
 	}
-	fmt.Printf("The database connection is successful")
-
+	fmt.Printf("The database connection is successful\n")
 }

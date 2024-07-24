@@ -3,9 +3,8 @@ package initialize
 import (
 	"github.com/gin-gonic/gin"
 	"gowebtest/api/v1/admin"
-	card2 "gowebtest/api/v1/card"
-	user2 "gowebtest/api/v1/user"
-	"gowebtest/data"
+	"gowebtest/api/v1/card"
+	"gowebtest/api/v1/user"
 	"gowebtest/middleware"
 	"gowebtest/route"
 	"net/http"
@@ -19,10 +18,10 @@ func RouteInit() {
 		{
 			GroupName: "user",
 			Routes: []route.Route{
-				{http.MethodGet, "login", user2.UserLoginInit},
-				{http.MethodPost, "login", user2.UserLogin},
-				{http.MethodPost, "register", user2.UserRegister},
-				{http.MethodGet, "home/:name", user2.UserHome},
+				{http.MethodGet, "login", user.UserLoginInit},
+				{http.MethodPost, "login", user.UserLogin},
+				{http.MethodPost, "register", user.UserRegister},
+				{http.MethodGet, "home/:name", user.UserHome},
 			},
 		},
 		{
@@ -34,19 +33,13 @@ func RouteInit() {
 		{
 			GroupName: "card",
 			Routes: []route.Route{
-				{http.MethodGet, "cards", card2.Cards},
-				{http.MethodGet, "gacha", card2.GachaCard},
-				{http.MethodPost, "cardsadd", card2.CardAdd},
+				{http.MethodGet, "cards", card.Cards},
+				{http.MethodGet, "gacha", card.GachaCard},
+				{http.MethodPost, "cardsadd", card.CardAdd},
 			},
 		},
 	}
 	router.Use(middleware.Cors())
 	route.InitRoutes(router, routes)
 	router.Run(":8080")
-}
-func DbInit() {
-	//测试数据库连接
-	db := data.Database{}
-	db.DatabaseConnect()
-
 }

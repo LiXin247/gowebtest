@@ -3,22 +3,17 @@ package user
 import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
-	"gowebtest/data"
+	"gowebtest/data/user"
 	"net/http"
 )
 
-func UserLoginInit(context *gin.Context) {
-
-}
+func UserLoginInit(context *gin.Context) {}
 func UserLogin(context *gin.Context) {
 	name := context.PostForm("name")
 	password := context.PostForm("password")
-	db := data.Database{}
-	db.DatabaseConnect()
-	var u User
-	result := db.DB.Where("user_name = ? AND user_password = ?", name, password).First(&u.Data)
-	if result.Error != nil {
-		if result.Error == gorm.ErrRecordNotFound {
+	err := user.UserLoginData(name, password)
+	if err != nil {
+		if err == gorm.ErrRecordNotFound {
 			context.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized", "message": "Invalid credentials"})
 		} else {
 			context.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": "Internal server error"})
@@ -26,5 +21,5 @@ func UserLogin(context *gin.Context) {
 		return
 	}
 
-	context.JSON(http.StatusOK, gin.H{"status": "success", "message": "Login successful", "user": u.Data})
+	context.JSON(http.StatusOK, gin.H{"status": "success", "message": "Login successful", "user": name})
 }

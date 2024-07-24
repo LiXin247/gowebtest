@@ -15,8 +15,8 @@ func UserLogin(context *gin.Context) {
 	password := context.PostForm("password")
 	db := dbconnect.Database{}
 	db.DatabaseConnect()
-	var u user
-	result := db.DB.Where("user_name = ? AND user_password = ?", name, password).First(&u.data)
+	var u User
+	result := db.DB.Where("user_name = ? AND user_password = ?", name, password).First(&u.Data)
 	if result.Error != nil {
 		if result.Error == gorm.ErrRecordNotFound {
 			context.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized", "message": "Invalid credentials"})
@@ -26,5 +26,5 @@ func UserLogin(context *gin.Context) {
 		return
 	}
 
-	context.JSON(http.StatusOK, gin.H{"status": "success", "message": "Login successful", "user": u.data})
+	context.JSON(http.StatusOK, gin.H{"status": "success", "message": "Login successful", "user": u.Data})
 }

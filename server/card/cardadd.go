@@ -2,6 +2,7 @@ package card
 
 import (
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 	"gowebtest/dbconnect"
 	"gowebtest/model/card"
 	"io"
@@ -25,6 +26,15 @@ func CardAdd(context *gin.Context) {
 	}
 	db := dbconnect.Database{}
 	db.DatabaseConnect()
+	var alreadyexists Card
+	result1 := db.DB.Where("card_name = ?", name).First(&alreadyexists.Data)
+	if result1.Error != gorm.ErrRecordNotFound {
+		context.JSON(http.StatusBadRequest, gin.H{
+			"status":  "error",
+			"message": "The card already exists",
+		})
+		return
+	}
 	var lastcard model.CardInfo
 	db.DB.Last(&lastcard)
 	CardID := lastcard.CardId + 1
@@ -33,8 +43,8 @@ func CardAdd(context *gin.Context) {
 		return
 	}
 	newCard := model.CardInfo{CardID, name, cardlevel, cardimageurlcopy, description}
-	result := db.DB.Create(&newCard)
-	if result.Error != nil {
+	result2 := db.DB.Create(&newCard)
+	if result2.Error != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{
 			"status":  "error",
 			"message": "Could not create card",

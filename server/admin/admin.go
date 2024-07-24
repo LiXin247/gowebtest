@@ -5,7 +5,7 @@ import (
 	"gorm.io/gorm"
 )
 
-type admin struct {
+type Admin struct {
 	data gorm.Model
 }
 

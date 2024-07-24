@@ -5,8 +5,8 @@ import (
 	"gorm.io/gorm"
 )
 
-type card struct {
-	datd gorm.Model
+type Card struct {
+	Data gorm.Model
 }
 
 func Cards(context *gin.Context) {

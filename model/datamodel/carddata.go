@@ -11,3 +11,12 @@ type CardInfo struct {
 func (m *CardInfo) TableName() string {
 	return "card_info"
 }
+
+type CardAttribute struct {
+	CardId          int `gorm:"column:card_id;type:int(11);primary_key" json:"card_id"`
+	CardProbability int `gorm:"column:card_probability;type:int(11);NOT NULL" json:"card_probability"`
+}
+
+func (m *CardAttribute) TableName() string {
+	return "card_attribute"
+}

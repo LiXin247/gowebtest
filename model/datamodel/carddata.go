@@ -20,3 +20,30 @@ type CardAttribute struct {
 func (m *CardAttribute) TableName() string {
 	return "card_attribute"
 }
+
+type CardInfo5 struct {
+	CardId   int `gorm:"column:card_id;type:int(11);primary_key" json:"card_id"`
+	CardAddr int `gorm:"column:card_addr;type:int(11)" json:"card_addr"`
+}
+
+func (m *CardInfo5) TableName() string {
+	return "card_info_5"
+}
+
+type CardInfo4 struct {
+	CardId   int `gorm:"column:card_id;type:int(11);primary_key" json:"card_id"`
+	CardAddr int `gorm:"column:card_addr;type:int(11)" json:"card_addr"`
+}
+
+func (m *CardInfo4) TableName() string {
+	return "card_info_4"
+}
+
+type CardInfo3 struct {
+	CardId   int `gorm:"column:card_id;type:int(11);primary_key" json:"card_id"`
+	CardAddr int `gorm:"column:card_addr;type:int(11)" json:"card_addr"`
+}
+
+func (m *CardInfo3) TableName() string {
+	return "card_info_3"
+}

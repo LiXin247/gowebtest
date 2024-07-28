@@ -34,7 +34,7 @@ func RouteInit() {
 			GroupName: "card",
 			Routes: []route.Route{
 				{http.MethodGet, "cards", card.Cards},
-				{http.MethodGet, "gacha", card.GachaCard},
+				{http.MethodPost, "gacha", card.GachaCard},
 				{http.MethodPost, "cardsadd", card.CardAdd},
 			},
 		},

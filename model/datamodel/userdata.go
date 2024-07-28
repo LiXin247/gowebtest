@@ -13,7 +13,7 @@ func (m *UserInfo) TableName() string {
 }
 
 type UserCardLibrary struct {
-	UserId  int `gorm:"column:user_id;type:int(11);primary_key" json:"user_id"`
+	UserId  int `gorm:"column:user_id;type:int(11);NOT NULL" json:"user_id"`
 	CardId  int `gorm:"column:card_id;type:int(11);NOT NULL" json:"card_id"`
 	CardNum int `gorm:"column:card_num;type:int(11);NOT NULL" json:"card_num"`
 }

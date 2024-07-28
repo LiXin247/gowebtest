@@ -11,7 +11,7 @@
  Target Server Version : 80034 (8.0.34)
  File Encoding         : 65001
 
- Date: 25/07/2024 10:49:44
+ Date: 28/07/2024 19:05:33
 */
 
 SET NAMES utf8mb4;
@@ -68,6 +68,54 @@ INSERT INTO `card_info` VALUES (10000001, '李子哥头像', 3, 'cardimage\\1000
 INSERT INTO `card_info` VALUES (10000002, '秋哥头像', 3, 'cardimage\\10000002.jpg', '秋哥常用头像，不值钱');
 INSERT INTO `card_info` VALUES (10000003, '周老师头像', 3, 'cardimage\\10000003.jpg', '周老师常用头像，不值钱');
 INSERT INTO `card_info` VALUES (10000004, '二次元美图', 4, 'cardimage\\10000004.jpg', '电报上的二次元美图，好看。');
+INSERT INTO `card_info` VALUES (10000005, '李鑫现用头像', 5, 'cardimage\\10000005.jpg', '李子哥现用头像，有故事，孩子别碰。');
+
+-- ----------------------------
+-- Table structure for card_info_3
+-- ----------------------------
+DROP TABLE IF EXISTS `card_info_3`;
+CREATE TABLE `card_info_3`  (
+  `card_id` int NOT NULL,
+  `card_addr` int NULL DEFAULT NULL,
+  PRIMARY KEY (`card_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of card_info_3
+-- ----------------------------
+INSERT INTO `card_info_3` VALUES (10000001, 1);
+INSERT INTO `card_info_3` VALUES (10000002, 2);
+INSERT INTO `card_info_3` VALUES (10000003, 3);
+
+-- ----------------------------
+-- Table structure for card_info_4
+-- ----------------------------
+DROP TABLE IF EXISTS `card_info_4`;
+CREATE TABLE `card_info_4`  (
+  `card_id` int NOT NULL,
+  `card_addr` int NULL DEFAULT NULL,
+  PRIMARY KEY (`card_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of card_info_4
+-- ----------------------------
+INSERT INTO `card_info_4` VALUES (10000004, 1);
+
+-- ----------------------------
+-- Table structure for card_info_5
+-- ----------------------------
+DROP TABLE IF EXISTS `card_info_5`;
+CREATE TABLE `card_info_5`  (
+  `card_id` int NOT NULL,
+  `card_addr` int NULL DEFAULT NULL,
+  PRIMARY KEY (`card_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of card_info_5
+-- ----------------------------
+INSERT INTO `card_info_5` VALUES (10000005, 1);
 
 -- ----------------------------
 -- Table structure for user_card_library
@@ -76,13 +124,14 @@ DROP TABLE IF EXISTS `user_card_library`;
 CREATE TABLE `user_card_library`  (
   `user_id` int NOT NULL,
   `card_id` int NOT NULL,
-  `card_num` int NOT NULL,
-  PRIMARY KEY (`user_id`) USING BTREE
+  `card_num` int NOT NULL
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_card_library
 -- ----------------------------
+INSERT INTO `user_card_library` VALUES (10000001, 10000001, 1);
+INSERT INTO `user_card_library` VALUES (10000001, 10000004, 1);
 
 -- ----------------------------
 -- Table structure for user_info

@@ -1,7 +1,6 @@
 package dbconnect
 
 import (
-	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -18,7 +17,6 @@ func (db *Database) DatabaseConnect() {
 	if db.err != nil {
 		panic("failed to connect database")
 	}
-	fmt.Printf("The database connection is successful\n")
 }
 func DbInit() Database {
 	//测试数据库连接

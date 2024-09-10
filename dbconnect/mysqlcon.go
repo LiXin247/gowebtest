@@ -13,7 +13,7 @@ type Database struct {
 }
 
 func (db *Database) DatabaseConnect() {
-	db.DB, db.err = gorm.Open(mysql.Open("root:123456@tcp(127.0.0.1:3306)/gowebtest"), &gorm.Config{})
+	db.DB, db.err = gorm.Open(mysql.Open("root:123456@tcp(127.0.0.1:53306)/"), &gorm.Config{})
 	if db.err != nil {
 		panic("failed to connect database")
 	}
